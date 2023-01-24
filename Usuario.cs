@@ -28,5 +28,12 @@
             this._contraseña = contraseña;
             this._mail = mail;
         }
+
+        public uint Id { get => _id; set => _id = value; }
+        public string Nombre { get => _nombre; set => _nombre = value; }
+        public string Apellido { get => _apellido; set => _apellido = value; }
+        public string NombreUsuario { get => _nombreUsuario; set => _nombreUsuario = value; }
+        public string Contraseña { get => _contraseña; set => _contraseña = value; }
+        public string Mail { get => _mail; set => _mail = value; }
     }
 }

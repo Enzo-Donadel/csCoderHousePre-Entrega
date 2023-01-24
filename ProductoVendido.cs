@@ -22,5 +22,10 @@
             this._stock = stock;
             this._idVenta = idVenta;
         }
+
+        public uint Id { get => _id; set => _id = value; }
+        public uint IdProducto { get => _idProducto; set => _idProducto = value; }
+        public int Stock { get => _stock; set => _stock = value; }
+        public uint IdVenta { get => _idVenta; set => _idVenta = value; }
     }
 }

@@ -28,5 +28,12 @@
             this._stock = stock;
             this._idUsuario = idUsuario;
         }
+
+        public uint Id { get => _id; set => _id = value; }
+        public string Descripcion { get => _descripcion; set => _descripcion = value; }
+        public float Costo { get => _costo; set => _costo = value; }
+        public float PrecioVenta { get => _precioVenta; set => _precioVenta = value; }
+        public int Stock { get => _stock; set => _stock = value; }
+        public uint IdUsuario { get => _idUsuario; set => _idUsuario = value; }
     }
 }
