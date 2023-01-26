@@ -19,5 +19,9 @@
             this._comentarios = comentarios;
             this._idUsuario = idUsuario;
         }
+
+        public uint Id { get => _id; set => _id = value; }
+        public string Comentarios { get => _comentarios; set => _comentarios = value; }
+        public uint IdUsuario { get => _idUsuario; set => _idUsuario = value; }
     }
 }
