@@ -9,6 +9,7 @@
         private string _contraseña;
         private string _mail;
 
+        #region Constructores
         public Usuario()
         {
             this._id = 0;
@@ -28,12 +29,14 @@
             this._contraseña = contraseña;
             this._mail = mail;
         }
-
+        #endregion
+        #region Getters y Setters
         public long Id { get => _id; set => _id = value; }
         public string Nombre { get => _nombre; set => _nombre = value; }
         public string Apellido { get => _apellido; set => _apellido = value; }
         public string NombreUsuario { get => _nombreUsuario; set => _nombreUsuario = value; }
         public string Contraseña { get => _contraseña; set => _contraseña = value; }
         public string Mail { get => _mail; set => _mail = value; }
+        #endregion
     }
 }
