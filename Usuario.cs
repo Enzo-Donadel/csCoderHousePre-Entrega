@@ -2,7 +2,7 @@
 {
     public class Usuario
     {
-        private uint _id;
+        private long _id;
         private string _nombre;
         private string _apellido;
         private string _nombreUsuario;
@@ -19,7 +19,7 @@
             this._mail = string.Empty;
         }
 
-        public Usuario(uint id, string nombre, string apellido, string nombreUsuario, string contraseña, string mail)
+        public Usuario(long id, string nombre, string apellido, string nombreUsuario, string contraseña, string mail)
         {
             this._id = id;
             this._nombre = nombre;
@@ -29,7 +29,7 @@
             this._mail = mail;
         }
 
-        public uint Id { get => _id; set => _id = value; }
+        public long Id { get => _id; set => _id = value; }
         public string Nombre { get => _nombre; set => _nombre = value; }
         public string Apellido { get => _apellido; set => _apellido = value; }
         public string NombreUsuario { get => _nombreUsuario; set => _nombreUsuario = value; }
