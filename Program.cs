@@ -7,6 +7,13 @@ namespace Enzo_Donadel
     {
         static void Main(string[] args)
         {
+            //testGetAllUsuario();
+            //testGetUsuario(1);
+            testGetProductsByUserID(2);
+        }
+        #region Tests Unitarios
+        static void testGetAllUsuario()
+        {
             List<Usuario> list = UsuarioHandler.getAllUsuario();
             foreach (Usuario usuario in list)
             {
@@ -18,7 +25,10 @@ namespace Enzo_Donadel
                 Console.WriteLine(usuario.Contraseña);
                 Console.WriteLine(usuario.Mail);
             }
-            Usuario user = UsuarioHandler.getUsuarioByID(2);
+        }
+        static void testGetUsuario(long id)
+        {
+            Usuario user = UsuarioHandler.getUsuarioByID(id);
             Console.WriteLine("---------------------------------");
             Console.WriteLine("Datos de query");
             Console.WriteLine("---------------------------------");
@@ -29,5 +39,20 @@ namespace Enzo_Donadel
             Console.WriteLine(user.Contraseña);
             Console.WriteLine(user.Mail);
         }
+        static void testGetProductsByUserID(long id)
+        {
+            List<Producto> products = ProductoHandler.getProductByUserId(id);
+            foreach (Producto product in products)
+            {
+                Console.WriteLine("---------------------------------");
+                Console.WriteLine(product.Id.ToString());
+                Console.WriteLine(product.Descripcion);
+                Console.WriteLine(product.Costo.ToString());
+                Console.WriteLine(product.PrecioVenta.ToString());
+                Console.WriteLine(product.Stock.ToString());
+                Console.WriteLine(product.IdUsuario.ToString());
+            }
+        }
+        #endregion
     }
 }
