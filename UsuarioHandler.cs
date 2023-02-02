@@ -18,6 +18,7 @@ namespace Enzo_Donadel
             "ApplicationIntent=ReadWrite;" +
             "MultiSubnetFailover=False";
 
+        //Traer Lista de Todos los usuarios
         public static List<Usuario> getAllUsuario()
         {
             List<Usuario> userList = new List<Usuario>();
@@ -49,6 +50,7 @@ namespace Enzo_Donadel
             }
             return userList;
         }
+        //Traer Usuario (recibe un int)
         public static Usuario getUsuarioByID(long idToSearch)
         {
             Usuario user = new Usuario();
@@ -78,6 +80,40 @@ namespace Enzo_Donadel
                     SqlDbConnection.Close();
                 }
 
+            }
+            return user;
+        }
+        //Inicio de sesión (recibe un usuario y contraseña y devuelve un objeto Usuario)
+        public static Usuario userLogIn(string userLogged, string passLogged)
+        {
+            Usuario user = new Usuario();
+            using (SqlConnection SqlDbConnection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM Usuario WHERE NombreUsuario = @userParameter AND Contraseña = @passParameter";
+                using (SqlCommand SqlDbQuery = new SqlCommand(query, SqlDbConnection))
+                {
+                    SqlParameter ParameterUser = new SqlParameter("userParameter", System.Data.SqlDbType.VarChar);
+                    ParameterUser.Value = userLogged;
+                    SqlParameter ParameterPass = new SqlParameter("passParameter", System.Data.SqlDbType.VarChar);
+                    ParameterPass.Value = passLogged;
+                    SqlDbQuery.Parameters.Add(ParameterUser);
+                    SqlDbQuery.Parameters.Add(ParameterPass);
+                    SqlDbConnection.Open();
+                    using (SqlDataReader DataReader = SqlDbQuery.ExecuteReader())
+                    {
+                        if (DataReader.HasRows)
+                        {
+                            DataReader.Read();
+                            user.Id = Convert.ToInt64(DataReader.GetInt64(0));
+                            user.Nombre = DataReader.GetString(1);
+                            user.Apellido = DataReader.GetString(2);
+                            user.NombreUsuario = DataReader.GetString(3);
+                            user.Contraseña = DataReader.GetString(4);
+                            user.Mail = DataReader.GetString(5);
+                        }
+                    }
+                    SqlDbConnection.Close();
+                }
             }
             return user;
         }

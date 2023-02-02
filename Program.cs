@@ -10,7 +10,8 @@ namespace Enzo_Donadel
             //testGetAllUsuario();
             //testGetUsuario(1);
             //testGetProductsByUserID(2);
-            testGetVentaByUserID(1);
+            //testGetVentaByUserID(1);
+            testUserLogIn("eperez", "SoyErneoPerez");
         }
         #region Tests Unitarios
         static void testGetAllUsuario()
@@ -64,6 +65,19 @@ namespace Enzo_Donadel
                 Console.WriteLine(venta.Comentarios);
                 Console.WriteLine(venta.IdUsuario.ToString());
             }
+        }
+        static void testUserLogIn(string user, string password)
+        {
+            Usuario testUser = UsuarioHandler.userLogIn(user,password);
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Datos de query");
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine(testUser.Id.ToString());
+            Console.WriteLine(testUser.Nombre);
+            Console.WriteLine(testUser.Apellido);
+            Console.WriteLine(testUser.NombreUsuario);
+            Console.WriteLine(testUser.Contraseña);
+            Console.WriteLine(testUser.Mail);
         }
         #endregion
     }
