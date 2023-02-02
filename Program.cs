@@ -9,7 +9,8 @@ namespace Enzo_Donadel
         {
             //testGetAllUsuario();
             //testGetUsuario(1);
-            testGetProductsByUserID(2);
+            //testGetProductsByUserID(2);
+            testGetVentaByUserID(1);
         }
         #region Tests Unitarios
         static void testGetAllUsuario()
@@ -51,6 +52,17 @@ namespace Enzo_Donadel
                 Console.WriteLine(product.PrecioVenta.ToString());
                 Console.WriteLine(product.Stock.ToString());
                 Console.WriteLine(product.IdUsuario.ToString());
+            }
+        }
+        static void testGetVentaByUserID(long id)
+        {
+            List<Venta> ventas = VentaHandler.getVentaByUserId(id);
+            foreach (Venta venta in ventas)
+            {
+                Console.WriteLine("---------------------------------");
+                Console.WriteLine(venta.Id.ToString());
+                Console.WriteLine(venta.Comentarios);
+                Console.WriteLine(venta.IdUsuario.ToString());
             }
         }
         #endregion
