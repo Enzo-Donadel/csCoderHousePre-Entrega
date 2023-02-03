@@ -49,5 +49,30 @@ namespace Enzo_Donadel
             }
             return ventas;
         }
+        public static Usuario getUsuarioByVenta(long VentaId)
+        {
+            long idToSearch = 0;
+            using (SqlConnection SqlDbConnection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT Venta.IdUsuario FROM Venta WHERE Id = @parameterToSearch";
+                using (SqlCommand SqlDbQuery = new SqlCommand(query, SqlDbConnection))
+                {
+                    SqlParameter ParameterID = new SqlParameter("parameterToSearch", System.Data.SqlDbType.BigInt);
+                    ParameterID.Value = VentaId;
+                    SqlDbQuery.Parameters.Add(ParameterID);
+                    SqlDbConnection.Open();
+                    using (SqlDataReader DataReader = SqlDbQuery.ExecuteReader())
+                    {
+                        if (DataReader.HasRows)
+                        {
+                            DataReader.Read();
+                            idToSearch = DataReader.GetInt64(0);
+                        }
+                    }
+                    SqlDbConnection.Close();
+                }
+            }
+            return UsuarioHandler.getUsuarioByID(idToSearch);
+        }
     }
 }

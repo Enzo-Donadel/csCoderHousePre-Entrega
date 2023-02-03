@@ -52,5 +52,57 @@ namespace Enzo_Donadel
             }
             return products;
         }
+        public static Producto getProductById(long IdToSearch)
+        {
+            Producto product = new Producto();
+            using (SqlConnection SqlDbConnection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand SqlDbQuery = new SqlCommand("SELECT * FROM Producto WHERE Id =@parameterToSearch", SqlDbConnection))
+                {
+                    SqlParameter ParameterID = new SqlParameter("parameterToSearch", System.Data.SqlDbType.BigInt);
+                    ParameterID.Value = IdToSearch;
+                    SqlDbQuery.Parameters.Add(ParameterID);
+                    SqlDbConnection.Open();
+                    using (SqlDataReader DataReader = SqlDbQuery.ExecuteReader())
+                    {
+                        if (DataReader.HasRows)
+                        {
+                            DataReader.Read();
+                            product.Id = DataReader.GetInt64(0);
+                            product.Descripcion = DataReader.GetString(1);
+                            product.Costo = DataReader.GetDecimal(2);
+                            product.PrecioVenta = DataReader.GetDecimal(3);
+                            product.Stock = DataReader.GetInt32(4);
+                            product.IdUsuario = DataReader.GetInt64(5);
+                        }
+                    }
+                    SqlDbConnection.Close();
+                }
+            }
+            return product;
+        }
+        public static Dictionary<Producto, int> getProductosVendidoPorUsuario(long userId)
+        {
+            Dictionary<Producto, int> products = new Dictionary<Producto, int>();
+            List<Venta> ventasDeUsuario = VentaHandler.getVentaByUserId(userId);
+            foreach(Venta venta in ventasDeUsuario)
+            {
+                List<Producto> temp = ProductoVendidoHandler.getProductosInVenta(venta.Id);
+                foreach (Producto product in temp)
+                {
+                    if (!products.ContainsKey(product))
+                    {
+                        products.Add(product, ProductoVendidoHandler.getCantidadDeProductosVendidos(venta.Id, product.Id));
+                    }
+                    else
+                    {
+                        int temporalcounter = 0;
+                        products.TryGetValue(product, out temporalcounter);
+                        products[product] = temporalcounter + ProductoVendidoHandler.getCantidadDeProductosVendidos(venta.Id, product.Id);
+                    }
+                }
+            }
+            return products;
+        }
     }
 }

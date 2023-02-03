@@ -11,7 +11,8 @@ namespace Enzo_Donadel
             //testGetUsuario(1);
             //testGetProductsByUserID(2);
             //testGetVentaByUserID(1);
-            testUserLogIn("eperez", "SoyErneoPerez");
+            testGetProductosVendidosByUser(1);
+            //testUserLogIn("eperez", "SoyErneoPerez");
         }
         #region Tests Unitarios
         static void testGetAllUsuario()
@@ -64,6 +65,18 @@ namespace Enzo_Donadel
                 Console.WriteLine(venta.Id.ToString());
                 Console.WriteLine(venta.Comentarios);
                 Console.WriteLine(venta.IdUsuario.ToString());
+            }
+        }
+        static void testGetProductosVendidosByUser(long userId)
+        {
+            Dictionary<Producto, int> productosVendidos = ProductoHandler.getProductosVendidoPorUsuario(userId);
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Lista de Productos Vendidos por el usuario {0}:", UsuarioHandler.getUsuarioByID(userId).Nombre);
+            foreach(Producto product in productosVendidos.Keys)
+            {
+                Console.WriteLine("Producto: " + product.Descripcion);
+                Console.WriteLine("Cantidad: " + Convert.ToString(productosVendidos[product]));
+                Console.WriteLine("---------------------------------");
             }
         }
         static void testUserLogIn(string user, string password)
