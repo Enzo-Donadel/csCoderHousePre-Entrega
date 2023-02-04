@@ -1,7 +1,4 @@
-﻿using System.Data.SqlClient;
-using System.Runtime.CompilerServices;
-
-namespace Enzo_Donadel
+﻿namespace Enzo_Donadel
 {
     internal class Program
     {
@@ -72,7 +69,7 @@ namespace Enzo_Donadel
             Dictionary<Producto, int> productosVendidos = ProductoHandler.getProductosVendidoPorUsuario(userId);
             Console.WriteLine("---------------------------------");
             Console.WriteLine("Lista de Productos Vendidos por el usuario {0}:", UsuarioHandler.getUsuarioByID(userId).Nombre);
-            foreach(Producto product in productosVendidos.Keys)
+            foreach (Producto product in productosVendidos.Keys)
             {
                 Console.WriteLine("Producto: " + product.Descripcion);
                 Console.WriteLine("Cantidad: " + Convert.ToString(productosVendidos[product]));
@@ -81,7 +78,7 @@ namespace Enzo_Donadel
         }
         static void testUserLogIn(string user, string password)
         {
-            Usuario testUser = UsuarioHandler.userLogIn(user,password);
+            Usuario testUser = UsuarioHandler.userLogIn(user, password);
             Console.WriteLine("---------------------------------");
             Console.WriteLine("Datos de query");
             Console.WriteLine("---------------------------------");

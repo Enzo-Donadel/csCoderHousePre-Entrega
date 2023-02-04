@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.SqlClient;
 
 namespace Enzo_Donadel
 {
@@ -85,7 +80,7 @@ namespace Enzo_Donadel
         {
             Dictionary<Producto, int> products = new Dictionary<Producto, int>();
             List<Venta> ventasDeUsuario = VentaHandler.getVentaByUserId(userId);
-            foreach(Venta venta in ventasDeUsuario)
+            foreach (Venta venta in ventasDeUsuario)
             {
                 List<Producto> temp = ProductoVendidoHandler.getProductosInVenta(venta.Id);
                 foreach (Producto product in temp)
