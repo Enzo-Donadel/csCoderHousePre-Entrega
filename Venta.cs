@@ -2,9 +2,9 @@
 {
     public class Venta
     {
-        private uint _id;
+        private long _id;
         private string _comentarios;
-        private uint _idUsuario;
+        private long _idUsuario;
 
         public Venta()
         {
@@ -13,11 +13,15 @@
             this._idUsuario = 0;
         }
 
-        public Venta(uint id, string comentarios, uint idUsuario)
+        public Venta(long id, string comentarios, long idUsuario)
         {
             this._id = id;
             this._comentarios = comentarios;
             this._idUsuario = idUsuario;
         }
+
+        public long Id { get => _id; set => _id = value; }
+        public string Comentarios { get => _comentarios; set => _comentarios = value; }
+        public long IdUsuario { get => _idUsuario; set => _idUsuario = value; }
     }
 }
